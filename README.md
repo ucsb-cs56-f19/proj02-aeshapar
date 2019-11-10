@@ -1,3 +1,8 @@
+Javadoc and Jacoco report: https://ucsb-cs56-f19.github.io/lab07-aeshapar/
+
+
+
+
 A simple Spring Boot webapp using:
 * Thymeleaf templating
 * Pulling in Bootstrap from CDN.
