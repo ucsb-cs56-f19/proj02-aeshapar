@@ -37,7 +37,7 @@
 
         <h2> Results</h2>
 
-        <table>
+        <table class = "table">
             <thead>
                 <tr>
                     <th>Type</th>
@@ -47,17 +47,18 @@
             </thead>
             <tbody>
                 <tr>
-                    <td th:text="${featureCollection.type}"></td>
-                    <td th:text="${featureCollection.metadata.url}"></td>
+                	<td>
+                		<a th:url = "${featureCollection.metadata.url}" th:text="${featureCollection.metadata.title}"></a>
+                	</td>
+                    <td th:text=></td>
                     <td th:text="${featureCollection.metadata.count}"></td>
-                    <td th:text="${featureCollection.metadata.title}"></td>
 
                 </tr>
             </tbody>
         </table>
 
         <h3>Earthquakes</h3>
-        <table>
+        <table class = "table">
             <thead>
                 <tr>
                     <th>id</th>
