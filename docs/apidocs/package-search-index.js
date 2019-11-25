@@ -1,1 +1,1 @@
-packageSearchIndex = [{"l":"All Packages","url":"allpackages-index.html"},{"l":"hello"},{"l":"hello.controllers"},{"l":"hello.entities"},{"l":"hello.geoson"}]
+packageSearchIndex = [{"l":"All Packages","url":"allpackages-index.html"},{"l":"earthquakes"},{"l":"earthquakes.controllers"},{"l":"earthquakes.entities"},{"l":"earthquakes.geoson"}]
