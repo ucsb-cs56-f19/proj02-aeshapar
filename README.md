@@ -1,8 +1,8 @@
-Javadoc and Jacoco report: https://ucsb-cs56-f19.github.io/lab07-aeshapar/
+Javadoc and Jacoco report: https://ucsb-cs56-f19.github.io/proj01-aeshapar/
 
-Heroku link to web app: https://cs56-f19-lab07-aeshapar.herokuapp.com/
+Heroku link to web app: https://cs56-f19-proj01-aeshapar.herokuapp.com/
 
-Travis-CI page: https://travis-ci.org/ucsb-cs56-f19/lab07-aeshapar
+Travis-CI page: https://travis-ci.org/ucsb-cs56-f19/proj01-aeshapar/
 
 
 
