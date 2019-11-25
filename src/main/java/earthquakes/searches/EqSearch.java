@@ -1,4 +1,4 @@
-package hello;
+package earthquakes;
 
 public class EqSearch{
 	private int distance;
