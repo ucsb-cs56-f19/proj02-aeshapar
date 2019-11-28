@@ -29,7 +29,7 @@ public class LocationsController {
     }
 
     @GetMapping("/locations/results")
-    public String getEarthquakesResults(Model model, OAuth2AuthenticationToken oAuth2AuthenticationToken,
+    public String getLocationsResults(Model model, OAuth2AuthenticationToken oAuth2AuthenticationToken,
           LocSearch locSearch) {
           // EarthquakeQueryService e = new EarthquakeQueryService();
           // model.addAttribute("locSearch", locSearch);
