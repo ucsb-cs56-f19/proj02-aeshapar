@@ -22,22 +22,21 @@ public class Place {
      * 
      * @param json String of json returned by API endpoint {@code /classes/search}
      * @return a new FeatureCollection object
-     * @see <a href=
-     *      "https://tools.ietf.org/html/rfc7946">https://tools.ietf.org/html/rfc7946</a>
+     * @see <a href="https://tools.ietf.org/html/rfc7946">https://tools.ietf.org/html/rfc7946</a>
      */
     
     public static List<Place> listFromJson(String json) {
 	    try {
 	    	ObjectMapper objectMapper = new ObjectMapper();
-	    	List<Place> list = objectMapper.readValue(json, objectMapper.getTypeFactory().constructCollectionType(List.class, Place.class));
-	    	return list;
+	    	List<Place> place = objectMapper.readValue(json, objectMapper.getTypeFactory().constructCollectionType(List.class, Place.class));
+	    	return place;
 	    } catch (JsonProcessingException jpe) {
             	logger.error("JsonProcessingException:" + jpe);
             	return null;
-            } catch (Exception e) {
+        } catch (Exception e) {
             	logger.error("Exception:" + e);
             	return null;
-            }
+        }       
     }
 
 }
