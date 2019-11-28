@@ -25,7 +25,7 @@ public class LocationsController {
     @GetMapping("/locations/search")
     public String getLocationsSearch(Model model, OAuth2AuthenticationToken oAuth2AuthenticationToken,
             LocSearch locSearch) {
-        return "/locations/search";
+        return "locations/search";
     }
 
     @GetMapping("/locations/results")
