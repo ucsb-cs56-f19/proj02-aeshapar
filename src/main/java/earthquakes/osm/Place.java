@@ -16,6 +16,8 @@ public class Place {
     public long place_id;
     public double lat;
     public double lon;
+    public String display_name;
+    public String type;
 
     /**
      * Create a FeatureCollection object from json representation
@@ -28,6 +30,7 @@ public class Place {
     public static List<Place> listFromJson(String json) {
 	    try {
 	    	ObjectMapper objectMapper = new ObjectMapper();
+            objectMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
 	    	List<Place> place = objectMapper.readValue(json, objectMapper.getTypeFactory().constructCollectionType(List.class, Place.class));
 	    	return place;
 	    } catch (JsonProcessingException jpe) {

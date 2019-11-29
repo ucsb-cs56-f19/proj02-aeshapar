@@ -17,7 +17,7 @@ import org.springframework.web.client.HttpClientErrorException;
 
 public class LocationQueryService {
 
-    private Logger logger = LoggerFactory.getLogger(EarthquakeQueryService.class);
+    private Logger logger = LoggerFactory.getLogger(LocationQueryService.class);
 
     public String getJSON(String location) {
       RestTemplate restTemplate = new RestTemplate();
@@ -29,13 +29,7 @@ public class LocationQueryService {
       HttpEntity<String> entity = new HttpEntity<>("body", headers);
 
       String url = "https://nominatim.openstreetmap.org/search/"+location+"?format=json";
-      // double latitude = ;
-      // double longitude = -119.8489;
-      // String params = String.format("?format=geojson&minmagnitude=%d&maxradiuskm=%d&latitude=%f&longitude=%f",
-      //    minmag,distance,ucsbLat,ucsbLong);
-
-      // String url = uri + params;
-      // logger.info("url=" + url);
+      logger.info("url=" + url);
 
       String retVal="";
       try {
@@ -46,7 +40,8 @@ public class LocationQueryService {
       } catch (HttpClientErrorException e) {
           retVal = "{\"error\": \"401: Unauthorized\"}";
       }
-      logger.info("from EarthquakeQueryService.getJSON: " + retVal);
+
+      logger.info("from LocationQueryService.getJSON: " + retVal);
       return retVal;
     }
 
