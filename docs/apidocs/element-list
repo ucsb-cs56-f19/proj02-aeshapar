@@ -2,3 +2,6 @@ earthquakes
 earthquakes.controllers
 earthquakes.entities
 earthquakes.geoson
+earthquakes.osm
+earthquakes.searches
+earthquakes.services
