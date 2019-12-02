@@ -57,4 +57,11 @@ public class LocationsController {
         model.addAttribute("locations", locations);
         return "locations/index";
     }
+
+    @GetMapping("/locations/add")
+    public String add(Location location, Model model) {
+      locationRepository.save(location);
+      model.addAttribute("locations", locationRepository.findAll());
+      return "locations/index";
+    }
 }
