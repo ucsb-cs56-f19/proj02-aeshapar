@@ -7,7 +7,7 @@ import javax.persistence.Id;
 
 @Entity
 public class Location {
- 
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
@@ -16,13 +16,14 @@ public class Location {
     private String name;
     private double latitude;
     private double longitude;
+    private String uid;
 
     public Long getId() { return id; }
     public void setId(Long id) { this.id = id; }
 
     public String getPlaceId() { return placeId; }
     public void setPlaceId(String p) { this.placeId = p; }
-   
+
     public String getName() { return name; }
     public void setName(String n) { name = n; }
 
@@ -31,5 +32,8 @@ public class Location {
 
     public double getLongitude(){ return longitude; }
     public void setLongitude(double lon) { longitude = lon; }
+
+    public String getUid() { return uid; }
+    public void setUid (String uid) { this.uid = uid; }
 
 }
