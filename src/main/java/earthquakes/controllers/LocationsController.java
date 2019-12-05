@@ -34,7 +34,7 @@ public class LocationsController {
 
     @Autowired
     public LocationsController(LocationRepository locationRepository) {
-        this.locationRepository = locationRepository;   
+        this.locationRepository = locationRepository;
     }
 
     @GetMapping("/locations/search")
@@ -56,25 +56,39 @@ public class LocationsController {
     }
 
     @GetMapping("/locations")
-    public String index(Model model) {
-        Iterable<Location> locations = locationRepository.findAll();
+    public String index(Model model, OAuth2AuthenticationToken token) {
+        if (token == null) return "";
+        String uid = token.getPrincipal().getAttributes().get("id").toString();
+        Iterable<Location> locations = locationRepository.findByUid(uid);
         model.addAttribute("locations", locations);
         return "locations/index";
     }
 
     @PostMapping("/locations/add")
-    public String add(Location location, Model model) {
+    public String add(Location location, Model model, OAuth2AuthenticationToken token) {
+      if (token == null) return "";
+      String uid = token.getPrincipal().getAttributes().get("id").toString();
+      location.setUid(uid);
+
       locationRepository.save(location);
-      model.addAttribute("locations", locationRepository.findAll());
+      model.addAttribute("locations", locationRepository.findByUid(uid));
       return "locations/index";
     }
 
     @DeleteMapping("/locations/delete/{id}")
-	public String delete(@PathVariable("id") long id, Model model) {
+	  public String delete(@PathVariable("id") long id, Model model) {
 	    Location location = locationRepository.findById(id)
 	            .orElseThrow(() -> new IllegalArgumentException("Invalid courseoffering Id:" + id));
 	    locationRepository.delete(location);
 	    model.addAttribute("locations", locationRepository.findAll());
 	    return "locations/index";
-}
+    }
+
+    @GetMapping("/locations/admin")
+    public String admin(Model model) {
+        Iterable<Location> locations = locationRepository.findAll();
+        model.addAttribute("locations", locations);
+        return "locations/admin";
+    }
+
 }
