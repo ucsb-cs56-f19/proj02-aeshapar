@@ -34,7 +34,7 @@ public class LocationsController {
 
     @Autowired
 <span class="nc" id="L36">    public LocationsController(LocationRepository locationRepository) {</span>
-<span class="nc" id="L37">        this.locationRepository = locationRepository;   </span>
+<span class="nc" id="L37">        this.locationRepository = locationRepository;</span>
 <span class="nc" id="L38">    }</span>
 
     @GetMapping(&quot;/locations/search&quot;)
@@ -56,26 +56,40 @@ public class LocationsController {
     }
 
     @GetMapping(&quot;/locations&quot;)
-    public String index(Model model) {
-<span class="nc" id="L60">        Iterable&lt;Location&gt; locations = locationRepository.findAll();</span>
-<span class="nc" id="L61">        model.addAttribute(&quot;locations&quot;, locations);</span>
-<span class="nc" id="L62">        return &quot;locations/index&quot;;</span>
+    public String index(Model model, OAuth2AuthenticationToken token) {
+<span class="nc bnc" id="L60" title="All 2 branches missed.">        if (token == null) return &quot;&quot;;</span>
+<span class="nc" id="L61">        String uid = token.getPrincipal().getAttributes().get(&quot;id&quot;).toString();</span>
+<span class="nc" id="L62">        Iterable&lt;Location&gt; locations = locationRepository.findByUid(uid);</span>
+<span class="nc" id="L63">        model.addAttribute(&quot;locations&quot;, locations);</span>
+<span class="nc" id="L64">        return &quot;locations/index&quot;;</span>
     }
 
     @PostMapping(&quot;/locations/add&quot;)
-    public String add(Location location, Model model) {
-<span class="nc" id="L67">      locationRepository.save(location);</span>
-<span class="nc" id="L68">      model.addAttribute(&quot;locations&quot;, locationRepository.findAll());</span>
-<span class="nc" id="L69">      return &quot;locations/index&quot;;</span>
+    public String add(Location location, Model model, OAuth2AuthenticationToken token) {
+<span class="nc bnc" id="L69" title="All 2 branches missed.">      if (token == null) return &quot;&quot;;</span>
+<span class="nc" id="L70">      String uid = token.getPrincipal().getAttributes().get(&quot;id&quot;).toString();</span>
+<span class="nc" id="L71">      location.setUid(uid);</span>
+
+<span class="nc" id="L73">      locationRepository.save(location);</span>
+<span class="nc" id="L74">      model.addAttribute(&quot;locations&quot;, locationRepository.findByUid(uid));</span>
+<span class="nc" id="L75">      return &quot;locations/index&quot;;</span>
     }
 
     @DeleteMapping(&quot;/locations/delete/{id}&quot;)
-	public String delete(@PathVariable(&quot;id&quot;) long id, Model model) {
-<span class="nc" id="L74">	    Location location = locationRepository.findById(id)</span>
-<span class="nc" id="L75">	            .orElseThrow(() -&gt; new IllegalArgumentException(&quot;Invalid courseoffering Id:&quot; + id));</span>
-<span class="nc" id="L76">	    locationRepository.delete(location);</span>
-<span class="nc" id="L77">	    model.addAttribute(&quot;locations&quot;, locationRepository.findAll());</span>
-<span class="nc" id="L78">	    return &quot;locations/index&quot;;</span>
-}
+	  public String delete(@PathVariable(&quot;id&quot;) long id, Model model) {
+<span class="nc" id="L80">	    Location location = locationRepository.findById(id)</span>
+<span class="nc" id="L81">	            .orElseThrow(() -&gt; new IllegalArgumentException(&quot;Invalid courseoffering Id:&quot; + id));</span>
+<span class="nc" id="L82">	    locationRepository.delete(location);</span>
+<span class="nc" id="L83">	    model.addAttribute(&quot;locations&quot;, locationRepository.findAll());</span>
+<span class="nc" id="L84">	    return &quot;locations/index&quot;;</span>
+    }
+
+    @GetMapping(&quot;/locations/admin&quot;)
+    public String admin(Model model) {
+<span class="nc" id="L89">        Iterable&lt;Location&gt; locations = locationRepository.findAll();</span>
+<span class="nc" id="L90">        model.addAttribute(&quot;locations&quot;, locations);</span>
+<span class="nc" id="L91">        return &quot;locations/admin&quot;;</span>
+    }
+
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>
